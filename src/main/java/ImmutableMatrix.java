@@ -10,6 +10,11 @@ public final class ImmutableMatrix extends Matrix implements MatrixInterface{
     public ImmutableMatrix(double[][] numbers){
         this.matrix = new Matrix(numbers);
     }
+
+    public ImmutableMatrix() {
+        this.matrix = new Matrix();
+    }
+
     @Override
     public double getElement(int row, int column){
         return matrix.getElement(row,column);
