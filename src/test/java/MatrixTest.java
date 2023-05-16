@@ -124,4 +124,13 @@ public class MatrixTest {
         Matrix matrix = new Matrix(2,2);
         assertEquals(matrix.hashCode(),63488);
     }
+    @Test
+    public void matrixInverse(){
+        Matrix matrix = new Matrix(new double[][]{new double[]{1,2},new double[]{3,4}});
+        assertEquals(matrix.inverseMatrix(),new Matrix(new double[][]{new double[]{-2,1},new double[]{1.5,-0.5}}));
+    }
+    @Test
+    public void matrixSingle(){
+        assertEquals(Matrix.singleMatrix(3),new Matrix(new double[][]{new double[]{1,0,0},new double[]{0,1,0},new double[]{0,0,1}}));
+    }
 }
