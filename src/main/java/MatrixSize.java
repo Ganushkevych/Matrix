@@ -1,0 +1,1 @@
+public record MatrixSize(int numOfRows, int numOfColumns) {}//вже містить в собі гетери
