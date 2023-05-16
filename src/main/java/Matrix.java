@@ -34,17 +34,17 @@ public class Matrix implements MatrixInterface{
 
     @Override
     public double getElement(int row, int column){
-        if(row<=0||column<=0||row>rows||column>columns) throw new WrongParametersException("Numbers of rows and columns should be positive");
+        if(row<0||column<0||row>rows||column>columns) throw new WrongParametersException("Numbers of rows and columns should be positive");
         return numbers[row][column];
     }
     @Override
     public double[] getRow(int row){
-        if(row<=0||row>rows) throw new WrongParametersException("Numbers of rows and columns should be positive");
+        if(row<0||row>rows) throw new WrongParametersException("Numbers of rows and columns should be positive");
         return numbers[row];
     }
     @Override
     public double[] getColumn(int column){
-        if(column<=0||column>columns) throw new WrongParametersException("Numbers of rows and columns should be positive");
+        if(column<0||column>columns) throw new WrongParametersException("Numbers of rows and columns should be positive");
         double[] columnArray = new double[rows];
         for (int i = 0; i < rows; i++) {
             columnArray[i] = numbers[i][column];
@@ -65,13 +65,13 @@ public class Matrix implements MatrixInterface{
 
     @Override
     public void setElement(int row, int column, double element) {
-        if(row<=0||column<=0||row>rows||column>columns) throw new WrongParametersException("Numbers of rows and columns should be positive");
+        if(row<0||column<0||row>rows||column>columns) throw new WrongParametersException("Numbers of rows and columns should be positive");
         this.numbers[row][column] = element;
     }
 
     @Override
     public void setRow(int row, double element) {
-        if(row<=0||row>rows) throw new WrongParametersException("Numbers of rows and columns should be positive");
+        if(row<0||row>rows) throw new WrongParametersException("Numbers of rows and columns should be positive");
         for(int i=0;i<columns;i++) {
             this.setElement(row, i, element);
         }
@@ -79,7 +79,7 @@ public class Matrix implements MatrixInterface{
 
     @Override
     public void setColumn(int column, double element) {
-        if(column<=0||column>columns) throw new WrongParametersException("Numbers of rows and columns should be positive");
+        if(column<0||column>columns) throw new WrongParametersException("Numbers of rows and columns should be positive");
         for(int i=0;i<rows;i++) {
             this.setElement(i, column, element);
         }
@@ -87,6 +87,7 @@ public class Matrix implements MatrixInterface{
     @Override
     public void fillByArray(double[][] numbers){
         if(numbers==null) throw new WrongParametersException("Array of numbers should not be null");
+        if(!(this.numbers.length == numbers.length && this.numbers[0].length == numbers[0].length)) throw new WrongParametersException("Array of numbers should be same size as matrix");
         this.numbers = numbers;
     }
 
