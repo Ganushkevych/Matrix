@@ -152,4 +152,11 @@ class ImmutableMatrixTest {
     public void matrixSingle(){
         assertEquals(ImmutableMatrix.singleMatrix(3),new Matrix(new double[][]{new double[]{1,0,0},new double[]{0,1,0},new double[]{0,0,1}}));
     }
+    @Test
+    public void shouldNotChangeImmutableMatrix(){
+        ImmutableMatrix matrix = new ImmutableMatrix(new double[][]{new double[]{1,2},new double[]{3,4}});
+        double[][] changedNumbers = matrix.getNumbers();
+        changedNumbers[0][0] = 5;
+        assertTrue(Arrays.deepEquals(matrix.getNumbers(),new double[][]{new double[]{1,2},new double[]{3,4}}));
+    }
 }

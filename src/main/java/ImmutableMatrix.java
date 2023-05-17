@@ -17,19 +17,20 @@ public final class ImmutableMatrix extends Matrix implements MatrixInterface{
 
     @Override
     public double getElement(int row, int column){
-        return matrix.getElement(row,column);
+        return (double)matrix.getElement(row,column);
     }
     @Override
     public double[] getRow(int row){
-        return matrix.getRow(row);
+        return matrixNumbersCopy(matrix.getRow(row));
     }
     @Override
     public double[] getColumn(int column){
-        return matrix.getColumn(column);
+        return matrixNumbersCopy(matrix.getColumn(column));
     }
     @Override
     public double[][] getNumbers(){
-        return matrix.getNumbers();
+        if(matrix.getNumbers()==null) return null;
+        return matrixNumbersCopy(matrix.getNumbers());
     }
     @Override
     public void print(){
@@ -71,5 +72,18 @@ public final class ImmutableMatrix extends Matrix implements MatrixInterface{
     @Override
     public Matrix inverseMatrix(){
         return matrix.inverseMatrix();
+    }
+
+    private double[][] matrixNumbersCopy(double[][] numbers){
+        double[][] copiedNumbers = new double[numbers.length][numbers[0].length];
+        for (int i = 0; i < numbers.length; i++) {
+            System.arraycopy(numbers[i], 0, copiedNumbers[i], 0, numbers[i].length);
+        }
+        return copiedNumbers;
+    }
+    private double[] matrixNumbersCopy(double[] numbers){
+        double[] copiedNumbers = new double[numbers.length];
+        System.arraycopy(numbers, 0, copiedNumbers, 0, numbers.length);
+        return copiedNumbers;
     }
 }
